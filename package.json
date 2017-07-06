@@ -1,0 +1,33 @@
+{
+  "name": "building-web-app-nodejs-and-express4",
+  "version": "1.0.0",
+  "description": "Curso Building Web Applications with Node.js and Express 4.0 de pluralsight",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "jade": "^1.11.0",
+    "mongodb": "^2.2.29",
+    "mssql": "^4.0.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.2.0",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-nodemon": "^2.2.1",
+    "inject": "^1.0.0-beta2",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
+    "wiredep": "^4.0.0"
+  }
+}

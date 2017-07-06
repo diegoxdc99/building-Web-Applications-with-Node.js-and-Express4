@@ -1,0 +1,35 @@
+{
+  "name": "building-web-app-nodejs-and-express4",
+  "description": "Curso Building Web Applications with Node.js and Express 4.0 de pluralsight",
+  "main": "app.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0"
+  },
+	"overrides": {
+		"bootstrap": {
+			"main": [
+				"dist/js/bootstrap.js",
+				"dist/css/bootstrap.css",
+				"less/bootstrap.less"
+			]					
+		},
+		"font-awesome": {
+			"main": [
+				"less/font-awesome.less",
+				"css/font-awesome.min.css",
+				"scss/font-awesome.scss"
+			]
+		}
+	}
+
+}
