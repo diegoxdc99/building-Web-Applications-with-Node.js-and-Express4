@@ -1,5 +1,9 @@
 var express = require('express'); //da un puntero a express
 var bodyParser = require('body-parser'); //analiza el body de la solicitud
+var cookieParser = require('cookie-parser'); //analiza cookie para la session
+var passport = require('passport'); //se necesita para hacer todo lo que se necesita hacer con passport
+var session = require('express-session'); //guarda la información del usuario
+
 var app = express(); // crea una instancia de express
 //var sql = require('mssql'); // base de datos
 
@@ -37,7 +41,17 @@ var authRouter = require('./src/routes/authRoutes')(nav);
 
 app.use(express.static('public')); // buscar archivos estaticos en esta ruta 'public'
 app.use(bodyParser.json());  // coje un JSON y crea un objeto req.body
+app.use(bodyParser());
 app.use(bodyParser.urlencoded()); // Coje una URl codificada y crea un objeto req.body
+app.use(cookieParser());
+app.use(session({
+	secret: 'library',
+	resave: true,
+	saveUninitialized: true
+})); //el secreto puede ser lo que quiera
+
+require('./src/config/passport')(app);
+
 app.set('views', './src/views'); // establece una variable views para decirle a node cuales son las vistas para usar plantillas
 
 // configurar motor para EJS
