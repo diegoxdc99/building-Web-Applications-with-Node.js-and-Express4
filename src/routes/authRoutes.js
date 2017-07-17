@@ -29,24 +29,11 @@ var router = function (nav) {
 
 		});
 	authRouter.route('/signIn')
-		.post(function(req, res){
-		console.log('holaaa');
-			console.log( req.body);
-			var authenticateOptions = {
-				failureRedirect: '/',  // si falla la autenticación redireccione al index
-			};
-		
-				// passport.authenticate('local', {
-				// 	successRedirect: '/auth/profile',
-				// 	failureRedirect: '/'
-				// });
-				// console.log(passport.authenticate);
-			
-			passport.authenticate('local', authenticateOptions, function(req, res){ //autentica usando la estrategia local
-				console.log(err);
-				res.redirect('/auth/profile');
-			});
-		});
+		.post(passport.authenticate('local', {   //autentica usando la estrategia local
+            failureRedirect: '/'  // en caso de que falle usa esta dirección, tiene mas opciones para personalizar
+        }), function (req, res) { // en caso de que sea valido ejecuta esta función
+            res.redirect('/auth/profile'); // redirecciona al perfil
+        });
 	authRouter.route('/profile')
 		.get(function (req, res) {
 			res.json(req.user);

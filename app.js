@@ -14,13 +14,6 @@ var app = express(); // crea una instancia de express
 //     database: 'base de datos',
 // };
 
-var config = {
-	user: 'sa',
-	password: '1234',
-    server: 'localhost\\SQLEXPRESS',
-	database: 'Books',
-
-};
 
 //sql.connect(config, function(err){
 //	console.log(err);
@@ -40,15 +33,10 @@ var adminRouter = require('./src/routes/adminRoutes')(nav);
 var authRouter = require('./src/routes/authRoutes')(nav);
 
 app.use(express.static('public')); // buscar archivos estaticos en esta ruta 'public'
-app.use(bodyParser.json());  // coje un JSON y crea un objeto req.body
-app.use(bodyParser());
-app.use(bodyParser.urlencoded()); // Coje una URl codificada y crea un objeto req.body
+app.use(bodyParser.urlencoded({ extended: true })); // Coje una URl codificada y crea un objeto req.body
+app.use(bodyParser.json()); // coje un JSON y crea un objeto req.body
 app.use(cookieParser());
-app.use(session({
-	secret: 'library',
-	resave: true,
-	saveUninitialized: true
-})); //el secreto puede ser lo que quiera
+app.use(session({secret: 'library'})); //el secreto puede ser lo que quiera
 
 require('./src/config/passport')(app);
 
