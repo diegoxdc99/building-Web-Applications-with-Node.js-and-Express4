@@ -29,12 +29,18 @@ var router = function (nav) {
 
 		});
 	authRouter.route('/signIn')
-		.post(passport.authenticate('local', {   //autentica usando la estrategia local
-            failureRedirect: '/'  // en caso de que falle usa esta dirección, tiene mas opciones para personalizar
-        }), function (req, res) { // en caso de que sea valido ejecuta esta función
-            res.redirect('/auth/profile'); // redirecciona al perfil
-        });
+		.post(passport.authenticate('local', { //autentica usando la estrategia local
+			failureRedirect: '/' // en caso de que falle usa esta dirección, tiene mas opciones para personalizar
+		}), function (req, res) { // en caso de que sea valido ejecuta esta función
+			res.redirect('/auth/profile'); // redirecciona al perfil
+		});
 	authRouter.route('/profile')
+		.all(function (req, res, next) {
+			if (!req.user) {
+				res.redirect('/');
+			}
+			next();
+		})
 		.get(function (req, res) {
 			res.json(req.user);
 		});

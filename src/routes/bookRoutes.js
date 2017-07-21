@@ -4,6 +4,12 @@ var mongodb = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
 var router = function (nav) {
+	bookRouter.use(function(req, res, next){
+		if (!req.user) {
+			res.redirect('/');
+		}
+		next();						 
+	});
 	bookRouter.route('/') // tambien se puede concatenar con . el post, delete etc
 		.get(function (req, res) {
 			var url = 'mongodb://localhost:27017/libraryApp'; // url y puerto por estandar de mongodb
